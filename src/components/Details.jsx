@@ -1,4 +1,4 @@
-import { ScatterChart, Scatter, Tooltip, LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import { Tooltip, LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 const formatXAxis = (tickItem) => {
     const d = new Date(tickItem);
@@ -34,20 +34,9 @@ function Details(props) {
                     <Line type="monotone" dataKey="t" stroke="#8884d8" strokeWidth={2} dot={false} />
                     <CartesianGrid stroke="#ccc" width={420} height={400} />
                     <XAxis dataKey="dt" tickCount={5} style={{ fontSize: '0.6rem' }} tickFormatter={formatXAxis} />
-                    <YAxis type="number" interval={0} tickCount={20} domain={['dataMin - 1.0', 'dataMax + 1.0']} />
+                    <YAxis type="number" interval={0} tickCount={20} style={{ fontSize: '0.6rem' }} domain={['dataMin - 1.0', 'dataMax + 1.0']} />
                     <Tooltip cursor={{ strokeDasharray: '3 3' }} />
                 </LineChart>
-
-                {/*
-                     <ScatterChart width={420} height={400}
-                        margin={{ top: 5, right: 0, left: 0, bottom: 5 }}>
-                        <CartesianGrid stroke="#ccc" width={420} height={400} />
-                        <XAxis dataKey="dt" tickCount={5} style={{ fontSize: '0.6rem' }} tickFormatter={formatXAxis} />
-                        <YAxis type="number" dateKey="t" interval={0} tickCount={20} domain={['dataMin - 1.0', 'dataMax + 1.0']} />
-                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                        <Scatter data={readings} fill="#8884d8" />
-                    </ScatterChart>
- */}
             </div >
         )
     } else
