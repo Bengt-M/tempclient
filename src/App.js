@@ -27,7 +27,7 @@ function App() {
     fetch(URI)
       .then(response => response.json())
       .then(data => {
-        console.log("parsed");
+        console.log("parsed ", data);
         setData(data);
       });
   }, [time]);
