@@ -1,2 +1,3 @@
 New button to reset min/max
 New button to clear all history
+Graph for humidity
