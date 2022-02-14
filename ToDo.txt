@@ -1,0 +1,2 @@
+New button to reset min/max
+New button to clear all history
