@@ -12,6 +12,10 @@ function App() {
     setCheck(!check);
   }
 
+  const reset = () => {
+    // setCheck(!check);
+  }
+
   // force periodic refresh
   const [time, setTime] = useState(Date.now());
   useEffect(() => {
@@ -35,7 +39,9 @@ function App() {
   return (
     <div className="App"> <center>
       <Reading data={data} />
+      <button id="btn1" className="button" onClick={reset()}>reset</button>
       <Checkbox label="details" value={check} onChange={handleChange} />
+      {check && <button id="btn2" className="button" onClick={reset()}>clear</button>}
       {check && <Details data={data} time={time} />}
     </center></div>
   );
