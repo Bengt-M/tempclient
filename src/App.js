@@ -4,6 +4,30 @@ import Checkbox from './components/Checkbox';
 import Details from './components/Details';
 import { useEffect, useState } from 'react';
 
+function reset() {
+  console.log("click reset");
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: 'POST Request Example' })
+  };
+  fetch('http://nuc.hemma:3001/cmd/reset', requestOptions)
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
+
+function clear() {
+  console.log("click clear");
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title: 'POST Request Example' })
+  };
+  fetch('http://nuc.hemma:3001/cmd/clear', requestOptions)
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
+
 function App() {
   const [data, setData] = useState();
   const [check, setCheck] = useState(false);
@@ -12,9 +36,6 @@ function App() {
     setCheck(!check);
   }
 
-  const reset = () => {
-    // setCheck(!check);
-  }
 
   // force periodic refresh
   const [time, setTime] = useState(Date.now());
@@ -39,9 +60,9 @@ function App() {
   return (
     <div className="App"> <center>
       <Reading data={data} />
-      <button id="btn1" className="button" onClick={reset()}>reset</button>
+      <button id="btn1" className="button" onClick={reset}>reset</button>
       <Checkbox label="details" value={check} onChange={handleChange} />
-      {check && <button id="btn2" className="button" onClick={reset()}>clear</button>}
+      {check && <button id="btn2" className="button" onClick={clear}>clear</button>}
       {check && <Details data={data} time={time} />}
     </center></div>
   );
