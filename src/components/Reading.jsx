@@ -2,7 +2,7 @@ function Reading(props) {
     const data = props.data;
     console.log("Reading: ", data);
 
-    if (data) {
+    if (data && data.readings) {
         const readings = data.readings;
         return (
             <div>

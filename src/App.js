@@ -4,30 +4,6 @@ import Checkbox from './components/Checkbox';
 import Details from './components/Details';
 import { useEffect, useState } from 'react';
 
-function reset() {
-  console.log("click reset");
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title: 'POST Request Example' })
-  };
-  fetch('http://nuc.hemma:3001/cmd/reset', requestOptions)
-    .then(response => response.json())
-    .then(data => console.log(data));
-}
-
-function clear() {
-  console.log("click clear");
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ title: 'POST Request Example' })
-  };
-  fetch('http://nuc.hemma:3001/cmd/clear', requestOptions)
-    .then(response => response.json())
-    .then(data => console.log(data));
-}
-
 function App() {
   const [data, setData] = useState();
   const [check, setCheck] = useState(false);
@@ -36,6 +12,33 @@ function App() {
     setCheck(!check);
   }
 
+  function reset() {
+    console.log("click reset");
+    if (window.confirm("Really reset?")) {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'POST Request' })
+      };
+      fetch('http://nuc.hemma:3001/cmd/reset', requestOptions)
+        .then(response => response.json())
+        .then(d => console.log(d));
+    }
+  }
+
+  function clear() {
+    console.log("click clear");
+    if (window.confirm("Really clear ALL data?")) {
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: 'POST Request' })
+      };
+      fetch('http://nuc.hemma:3001/cmd/clear', requestOptions)
+        .then(response => response.json())
+        .then(d => console.log(d));
+    }
+  }
 
   // force periodic refresh
   const [time, setTime] = useState(Date.now());
