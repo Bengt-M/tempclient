@@ -2,7 +2,7 @@
 
 cd /var/www/html/
 rm -rf temp/*
-mkdir temp
+#mkdir temp
 cd temp
 cp -r /home/bengt/node-react-workspace/tempclient/build/* .
 chown -R apache:apache .
