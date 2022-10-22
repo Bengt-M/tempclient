@@ -51,7 +51,7 @@ function App() {
 
   useEffect(() => {
     console.log("useeffect");
-    const URI = 'http://nuc.hemma/tempdata/';
+    const URI = 'https://nuc.hemma/tempdata/';
     fetch(URI)
       .then(response => response.json())
       .then(data => {
