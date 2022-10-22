@@ -20,7 +20,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'POST Request' })
       };
-      fetch('http://nuc.hemma:3001/cmd/reset', requestOptions)
+      fetch('http://nuc.hemma/tempdata/cmd/reset', requestOptions)
         .then(response => response.json())
         .then(d => console.log(d));
     }
@@ -34,7 +34,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'POST Request' })
       };
-      fetch('http://nuc.hemma:3001/cmd/clear', requestOptions)
+      fetch('http://nuc.hemma/tempdata/cmd/clear', requestOptions)
         .then(response => response.json())
         .then(d => console.log(d));
     }
@@ -51,7 +51,7 @@ function App() {
 
   useEffect(() => {
     console.log("useeffect");
-    const URI = 'http://nuc.hemma:3001/';
+    const URI = 'http://nuc.hemma/tempdata/';
     fetch(URI)
       .then(response => response.json())
       .then(data => {
