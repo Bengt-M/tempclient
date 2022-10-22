@@ -6,4 +6,4 @@ rm -rf temp/*
 cd temp
 cp -r /home/bengt/node-react-workspace/tempclient/build/* .
 chown -R apache:apache .
-restorecon -v .
+restorecon -Rv .
