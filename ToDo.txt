@@ -1,1 +1,4 @@
-Graph for humidity
+Graph for humidity?
+
+Maybe: asynch/await and not .then
+

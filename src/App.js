@@ -21,8 +21,8 @@ function App() {
         body: JSON.stringify({ title: 'POST Request' })
       };
       fetch('https://nuc.hemma/tempdata/cmd/reset', requestOptions)
-        .then(response => response.json())
-        .then(d => console.log(d));
+        .then(response => response.text())
+        .then(d => console.log("server returned ", d));
     }
   }
 
@@ -35,8 +35,8 @@ function App() {
         body: JSON.stringify({ title: 'POST Request' })
       };
       fetch('https://nuc.hemma/tempdata/cmd/clear', requestOptions)
-        .then(response => response.json())
-        .then(d => console.log(d));
+        .then(response => response.text())
+        .then(d => console.log("server returned ", d));
     }
   }
 
@@ -51,11 +51,10 @@ function App() {
 
   useEffect(() => {
     console.log("useeffect");
-    const URI = 'https://nuc.hemma/tempdata';
-    fetch(URI)
+    fetch('https://nuc.hemma/tempdata/')
       .then(response => response.json())
       .then(data => {
-        console.log("parsed ", data);
+        console.log("server returned ", data);
         setData(data);
       });
   }, [time]);
