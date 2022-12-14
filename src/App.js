@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import Reading from './components/Reading';
 import Checkbox from './components/Checkbox';
@@ -55,6 +56,8 @@ function App() {
       .then(response => response.json())
       .then(data => {
         console.log("server returned ", data);
+        data.dataMin= data.tmn; //TODO: denna kan vara gammal, bättre att söka igenom data
+        data.dataMax= data.tmx;
         setData(data);
       });
   }, [time]);

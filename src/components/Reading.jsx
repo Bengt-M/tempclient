@@ -1,3 +1,5 @@
+import React from 'react';
+
 function Reading(props) {
     const data = props.data;
     console.log("Reading: ", data);
