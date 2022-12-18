@@ -21,14 +21,13 @@ function Details(props) {
     if (data) {
         let maxValue = -10000;
         let minValue = 10000;
-        data.readings.forEach(element => {
-            maxValue = Math.max(maxValue, element.t);
-            minValue = Math.min(minValue, element.t);
-        });
         const readings = data.readings;
+        for (var i = 0, len = readings.length; i < len; i++) {
+            maxValue = Math.max(maxValue, readings[i].t);
+            minValue = Math.min(minValue, readings[i].t);
+        };
         const dataMin = minValue - 0.5;
         const dataMax = maxValue + 0.5;
-
         console.log(dataMin + " " + dataMax)
         return (
             <div>
