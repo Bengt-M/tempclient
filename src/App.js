@@ -4,6 +4,7 @@ import Reading from './components/Reading';
 import Checkbox from './components/Checkbox';
 import Details from './components/Details';
 import { useEffect, useState } from 'react';
+require('dotenv').config()
 
 function App() {
   const [data, setData] = useState();
