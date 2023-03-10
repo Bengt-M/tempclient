@@ -4,7 +4,7 @@ import Reading from './components/Reading';
 import Checkbox from './components/Checkbox';
 import Details from './components/Details';
 import { useEffect, useState } from 'react';
-require('dotenv').config()
+
 
 function App() {
   const [data, setData] = useState();
@@ -22,7 +22,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'POST Request' })
       };
-      fetch('https://nuc.hemma/tempdata/cmd/reset', requestOptions)
+      fetch(process.env.REACT_APP_BACKEND + '/cmd/reset', requestOptions)
         .then(response => response.text())
         .then(d => console.log("server returned ", d));
     }
@@ -36,7 +36,7 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'POST Request' })
       };
-      fetch('https://nuc.hemma/tempdata/cmd/clear', requestOptions)
+      fetch(process.env.REACT_APP_BACKEND + '/cmd/clear', requestOptions)
         .then(response => response.text())
         .then(d => console.log("server returned ", d));
     }
@@ -53,12 +53,13 @@ function App() {
 
   useEffect(() => {
     console.log("useeffect");
-    fetch('https://nuc.hemma/tempdata/')
+   // console.log(process.env.REACT_APP_BACKEND);
+    fetch(process.env.REACT_APP_BACKEND)
       .then(response => response.json())
       .then(data => {
         console.log("server returned ", data);
-        data.dataMin= data.tmn; //TODO: denna kan vara gammal, bättre att söka igenom data
-        data.dataMax= data.tmx;
+        data.dataMin = data.tmn; //TODO: denna kan vara gammal, bättre att söka igenom data
+        data.dataMax = data.tmx;
         setData(data);
       });
   }, [time]);
