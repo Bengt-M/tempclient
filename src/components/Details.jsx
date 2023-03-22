@@ -28,7 +28,6 @@ function Details(props) {
         };
         const dataMin = minValue - 0.5;
         const dataMax = maxValue + 0.5;
-        console.log(dataMin + " " + dataMax)
         return (
             <div>
                 <p>

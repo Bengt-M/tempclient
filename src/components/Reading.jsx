@@ -2,7 +2,7 @@ import React from 'react';
 
 function Reading(props) {
     const data = props.data;
-    console.log("Reading: ", data);
+    //console.log("Reading: ", data);
 
     if (data && data.readings) {
         const readings = data.readings;
@@ -21,7 +21,7 @@ function Reading(props) {
                     <tbody>
                         <tr>
                             <td>Temperature</td>
-                            <td>{data.tmn}</td><td className="tmpCur">{readings[readings.length - 1].t}</td><td>{data.tmx}</td>
+                            <td>{data.dataMin}</td><td className="tmpCur">{readings[readings.length - 1].t}</td><td>{data.dataMax}</td>
                         </tr>
                         <tr>
                             <td>Humidity</td>

@@ -1,32 +1,12 @@
 import React from 'react';
 import './App.css';
 import Reading from './components/Reading';
-import Checkbox from './components/Checkbox';
 import Details from './components/Details';
 import { useEffect, useState } from 'react';
 
 
 function App() {
   const [data, setData] = useState();
-  const [check, setCheck] = useState(false);
-
-  const handleChange = () => {
-    setCheck(!check);
-  }
-
-  function reset() {
-    console.log("click reset");
-    if (window.confirm("Really reset?")) {
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: 'POST Request' })
-      };
-      fetch(process.env.REACT_APP_BACKEND + '/cmd/reset', requestOptions)
-        .then(response => response.text())
-        .then(d => console.log("server returned ", d));
-    }
-  }
 
   function clear() {
     console.log("click clear");
@@ -53,13 +33,21 @@ function App() {
 
   useEffect(() => {
     console.log("useeffect");
-   // console.log(process.env.REACT_APP_BACKEND);
+    // console.log(process.env.REACT_APP_BACKEND);
     fetch(process.env.REACT_APP_BACKEND)
       .then(response => response.json())
       .then(data => {
-        console.log("server returned ", data);
-        data.dataMin = data.tmn; //TODO: denna kan vara gammal, bättre att söka igenom data
-        data.dataMax = data.tmx;
+        // console.log("server returned ", data);
+
+        let dmi = 100;
+        let dma = -100;
+        for (var i = 0; i < data.readings.length; i++) {
+          dmi = Math.min(dmi, data.readings[i].t);
+          dma = Math.max(dma, data.readings[i].t);
+        }
+        data.dataMin = dmi;
+        data.dataMax = dma;
+        //console.log("new data ", data);
         setData(data);
       });
   }, [time]);
@@ -67,10 +55,8 @@ function App() {
   return (
     <div className="App"> <center>
       <Reading data={data} />
-      <button id="btn1" className="button" onClick={reset}>reset</button>
-      <Checkbox label="details" value={check} onChange={handleChange} />
-      {check && <button id="btn2" className="button" onClick={clear}>clear</button>}
-      {check && <Details data={data} time={time} />}
+      <Details data={data} time={time} />
+      <button id="btn2" className="button" onClick={clear}>clear</button>
     </center></div>
   );
 }
