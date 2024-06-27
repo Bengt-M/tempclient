@@ -38,7 +38,7 @@ function Details(props) {
                     and {new Date(readings[readings.length - 1].dt).toLocaleString('sv-SE', { timeZone: 'CET' })}
                     . Last sensor data is {age(new Date(readings[readings.length - 1].dt))} old
                 </p>
-                <LineChart width={420} height={400} data={readings}
+                <LineChart width={400} height={400} data={readings}
                     margin={{ top: 5, right: 0, left: 0, bottom: 5 }}>
                     <Line type="monotone" dataKey="t" stroke="#8884d8" strokeWidth={2} dot={false} />
                     <CartesianGrid stroke="#ccc" width={420} height={400} />
