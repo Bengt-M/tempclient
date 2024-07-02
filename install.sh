@@ -1,9 +1,13 @@
-# run this as root after npm run build
+git clone -b beforescatter https://github.com/Bengt-M/tempclient.git
+cd tempclient
+npm install
+npm run build
 
-cd /var/www/html/
-rm -rf temp/*
-#mkdir temp
-cd temp
+# run the rest as root
+sudo -i
+
+cd /var/www/html/temp
+rm -rf *
 cp -r /home/bengt/node-react-workspace/tempclient/build/* .
 chown -R apache:apache .
 restorecon -Rv .
