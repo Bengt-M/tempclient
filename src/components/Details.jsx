@@ -41,7 +41,7 @@ function Details(props) {
                 <LineChart width={400} height={400} data={readings}
                     margin={{ top: 5, right: 0, left: 0, bottom: 5 }}>
                     <Line type="monotone" dataKey="t" stroke="#8884d8" strokeWidth={2} dot={false} />
-                    <CartesianGrid stroke="#ccc" width={420} height={400} />
+                    <CartesianGrid stroke="#ccc" width={400} height={400} />
                     <XAxis dataKey="dt" tickCount={5} style={{ fontSize: '0.6rem' }} tickFormatter={formatXAxis} />
                     <YAxis type="number" interval={0} tickCount={20} style={{ fontSize: '0.6rem' }} domain={[dataMin, dataMax]} />
                     <Tooltip cursor={{ strokeDasharray: '3 3' }} />
