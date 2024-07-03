@@ -2,11 +2,13 @@ import React from 'react';
 import './App.css';
 import Reading from './components/Reading';
 import Details from './components/Details';
+import useScreenSize from './components/useScreenSize';
 import { useEffect, useState } from 'react';
 
 
 function App() {
   const [data, setData] = useState();
+  const screenSize = useScreenSize();
 
   function clear() {
     console.log("click clear");
@@ -51,13 +53,17 @@ function App() {
         setData(data);
       });
   }, [time]);
+//  console.log(screenSize);
 
   return (
-    <div className="App"> <center>
-      <Reading data={data} />
-      <Details data={data} time={time} />
-      <button id="btn2" className="button" onClick={clear}>clear</button>
-    </center></div>
+
+    <div className="App">
+      <p>Width: {screenSize.width}</p><p>Height: {screenSize.height}</p>
+      <center>
+        <Reading data={data} />
+        <Details data={data} time={time} />
+        <button id="btn2" className="button" onClick={clear}>clear</button>
+      </center></div>
   );
 }
 

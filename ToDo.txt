@@ -3,3 +3,5 @@ Graph for humidity?
 Maybe: asynch/await and not .then
 
 Move min/max from client to server
+
+Understand sizes and dynamic sizes
