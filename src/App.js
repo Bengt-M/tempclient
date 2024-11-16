@@ -53,12 +53,10 @@ function App() {
         setData(data);
       });
   }, [time]);
-//  console.log(screenSize);
+  console.log(screenSize.height," ",screenSize.width);
 
   return (
-
     <div className="App">
-      <p>Width: {screenSize.width}</p><p>Height: {screenSize.height}</p>
       <center>
         <Reading data={data} />
         <Details data={data} time={time} />

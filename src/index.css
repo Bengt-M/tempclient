@@ -1,6 +1,8 @@
 center {
   width: 400px;
+  height: 700px;
   max-width: 100%;
+  min-height: 400px;
   margin: 0px auto;
   font-family: 'Roboto', sans-serif;
   color: #444;
@@ -28,16 +30,34 @@ center.div {
 
 table {
   margin: 0px 10px 0px 10px;
-width: 100%;
+  width: 100%;
 }
 
-td, th {
+td,
+th {
   color: #555;
   text-align: left;
- /* width: 100%;*/
+  /* width: 100%;*/
 }
+
 td.tmpCur {
-font-weight: bold;
+  font-weight: bold;
+}
+
+.outer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 600px;
+}
+
+.inner {
+  width: 400px;
+  height: 400px;
+  min-height: 400px;
 }
 
 .button {
@@ -45,15 +65,14 @@ font-weight: bold;
   border: none;
   color: white;
   background-color: #00878F;
-  padding: 6px 24px;
+  padding: 6px;
   font-size: 16px;
   cursor: pointer;
   box-shadow: 1px 1px 6px #555;
   outline: none;
   margin: 12px auto 0px auto;
-  display: inline-block;
 }
 
 .button:hover {
-  box-shadow: 1px 1px 3px #444;
+  box-shadow: 3px 3px 6px #444;
 }

@@ -36,16 +36,18 @@ function Details(props) {
                     {readings.length} samples between {new Date(readings[0].dt).toLocaleString('sv-SE', { timeZone: 'CET' })}
                     <br />
                     and {new Date(readings[readings.length - 1].dt).toLocaleString('sv-SE', { timeZone: 'CET' })}
-                    . Last sensor data is {age(new Date(readings[readings.length - 1].dt))} old
+                    <br />Last sensor data is {age(new Date(readings[readings.length - 1].dt))} old
                 </p>
-                <LineChart width={400} height={400} data={readings}
-                    margin={{ top: 5, right: 0, left: 0, bottom: 5 }}>
-                    <Line type="monotone" dataKey="t" stroke="#8884d8" strokeWidth={2} dot={false} />
-                    <CartesianGrid stroke="#ccc" width={400} height={400} />
-                    <XAxis dataKey="dt" tickCount={5} style={{ fontSize: '0.6rem' }} tickFormatter={formatXAxis} />
-                    <YAxis type="number" interval={0} tickCount={20} style={{ fontSize: '0.6rem' }} domain={[dataMin, dataMax]} />
-                    <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                </LineChart>
+                <div>
+                    <LineChart data={readings} width={375} height={400}
+                        margin={{ top: 5, right: 0, left: 0, bottom: 50 }}>
+                        <Line type="monotone" dataKey="t" stroke="#8884d8" strokeWidth={2} dot={false} />
+                        <CartesianGrid stroke="#ccc" />
+                        <XAxis dataKey="dt" tickCount={5} style={{ fontSize: '0.6rem' }} tickFormatter={formatXAxis} />
+                        <YAxis type="number" interval={0} tickCount={20} style={{ fontSize: '0.6rem' }} domain={[dataMin, dataMax]} />
+                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+                    </LineChart>
+                </div>
             </div >
         )
     } else
