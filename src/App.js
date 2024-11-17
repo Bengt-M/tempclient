@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Reading from './components/Reading';
 import Details from './components/Details';
+import Details2 from './components/Details2';
 import useScreenSize from './components/useScreenSize';
 import { useEffect, useState } from 'react';
 
@@ -60,6 +61,7 @@ function App() {
       <center>
         <Reading data={data} />
         <Details data={data} time={time} />
+        <Details2 data={data} time={time} />
         <button id="btn2" className="button" onClick={clear}>clear</button>
       </center></div>
   );
