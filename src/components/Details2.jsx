@@ -1,57 +1,61 @@
 import React from 'react';
-import { Tooltip, LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { faker } from '@faker-js/faker';
 
-const formatXAxis = (tickItem) => {
-    const d = new Date(tickItem);
-    return d.getHours();
-}
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+);
 
-const age = (t) => {
-    const diff = new Date() - new Date(t);
-    const h = Math.floor(diff / 1000 / 60 / 60);
-    const diff_corr = diff - h * 1000 * 60 * 60;
-    const m = Math.round(diff_corr / 1000 / 60);
-    return h + "h " + m + "m ";
-}
+export const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top',
+        },
+        title: {
+            display: true,
+            text: 'Chart.js Line Chart',
+        },
+    },
+};
 
-function Details(props) {
-    const data = props.data;
-    console.log("Reading: ", data);
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+export const data = {
+    labels,
+    datasets: [
+        {
+            label: 'Dataset 1',
+            data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
+            //labels.map(() => faker({ min: -1000, max: 1000 })),    
+            //data: labels.map(() => faker({ min: -1000, max: 1000 })),
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        },
+    ],
+};
 
-    if (data) {
-        let maxValue = -10000;
-        let minValue = 10000;
-        const readings = data.readings;
-        for (var i = 0, len = readings.length; i < len; i++) {
-            maxValue = Math.max(maxValue, readings[i].t);
-            minValue = Math.min(minValue, readings[i].t);
-        };
-        const dataMin = minValue - 0.5;
-        const dataMax = maxValue + 0.5;
-        return (
-            <div>
-                <p>
-                    Last server read {new Date(props.time).toLocaleString('sv-SE', { timeZone: 'CET' })}
-                    <br />
-                    {readings.length} samples between {new Date(readings[0].dt).toLocaleString('sv-SE', { timeZone: 'CET' })}
-                    <br />
-                    and {new Date(readings[readings.length - 1].dt).toLocaleString('sv-SE', { timeZone: 'CET' })}
-                    <br />Last sensor data is {age(new Date(readings[readings.length - 1].dt))} old
-                </p>
-                <div>
-                    <LineChart data={readings} width={375} height={400}
-                        margin={{ top: 5, right: 0, left: 0, bottom: 50 }}>
-                        <Line type="monotone" dataKey="t" stroke="#8884d8" strokeWidth={2} dot={false} />
-                        <CartesianGrid stroke="#ccc" />
-                        <XAxis dataKey="dt" tickCount={5} style={{ fontSize: '0.6rem' }} tickFormatter={formatXAxis} />
-                        <YAxis type="number" interval={0} tickCount={20} style={{ fontSize: '0.6rem' }} domain={[dataMin, dataMax]} />
-                        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                    </LineChart>
-                </div>
-            </div >
-        )
-    } else
-        return <div>no data</div>;
-}
-
-export default Details
+function Details2(props) {
+    console.log("Details2(props): ", props);
+    return (
+        <div>
+            <Line data={data} />
+        </div>
+    );
+};
+export default Details2
