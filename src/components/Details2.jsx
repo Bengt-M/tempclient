@@ -51,7 +51,14 @@ export const data = {
 };
 
 function Details2(props) {
-    console.log("Details2(props): ", props);
+    //   console.log("Details2(props): ", props);
+    if (typeof props.data !== "undefined") {
+        console.log("Details2.props.data ", props.data);
+        const labels = props.data.readings.map(e => {
+            return e.dt;
+        })
+        console.log("labels: ", labels)
+    }
     return (
         <div>
             <Line data={data} />
