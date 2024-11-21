@@ -60,8 +60,8 @@ function App() {
     <div className="App">
       <center>
         <Reading data={data} />
-        <Details data={data} time={time} />
         <Details2 data={data} time={time} />
+        <Details data={data} time={time} />
         <button id="btn2" className="button" onClick={clear}>clear</button>
       </center></div>
   );
