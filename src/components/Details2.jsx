@@ -35,30 +35,19 @@ export const options = {
     },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-export const data = {
-    labels,
-    datasets: [
-        {
-            label: 'Dataset 1',
-            data: labels.map(() => faker.number.int({ min: -1000, max: 1000 })),
-            //labels.map(() => faker({ min: -1000, max: 1000 })),    
-            //data: labels.map(() => faker({ min: -1000, max: 1000 })),
-            borderColor: 'rgb(255, 99, 132)',
-            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-    ],
-};
-
 function Details2(props) {
-    //   console.log("Details2(props): ", props);
-    if (typeof props.data !== "undefined") {
-        console.log("Details2.props.data ", props.data);
-        const labels = props.data.readings.map(e => {
-            return e.dt;
-        })
-        console.log("labels: ", labels)
-    }
+    const labels = props.data.readings.map(e => { return e.dt; });
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Dataset 1',
+                data: props.data.readings.map(e => { return e.t; }),
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+        ],
+    };
     return (
         <div>
             <Line data={data} />
