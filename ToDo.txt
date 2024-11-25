@@ -1,6 +1,6 @@
 Graph for humidity?
 Selectable with a checkbox
-
+Need to store a value in App and have a state
 
 Maybe: asynch/await and not .then
 
@@ -13,3 +13,7 @@ full width on phone, more narrow on computer
 Remove unused code and old comments
 
 change the timestamp from server to json to client ?
+
+Can one sewparate x axis values from its labels?
+Try alternatives for X axis
+

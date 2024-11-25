@@ -1,10 +1,10 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Reading from './components/Reading';
 //import Details from './components/Details';
 import Details2 from './components/Details2';
 import useScreenSize from './components/useScreenSize';
-import { useEffect, useState } from 'react';
 
 
 function App() {

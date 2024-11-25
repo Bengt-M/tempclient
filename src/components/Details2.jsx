@@ -32,39 +32,42 @@ const age = (t) => {
 
 export const options = {
     responsive: true,
-    maintainAspectRatio: false,
+   // maintainAspectRatio: false,
+    aspectRatio: 1,
+    interaction: {
+        mode: 'index',
+        intersect: true,
+    },
+    stacked: false,
     plugins: {
-        scales: {
-            screenY: {
-                type: 'linear',
-                display: true,
-                position: 'right'
-              },
-              screenX: {
-                type: 'linear',
-              },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-            display: false,
-        },
-        label: {
-            display: false,
-        },
         title: {
-            display: false,
+            display: true,
+            text: 'Sensor history',
         },
     },
-    chart: {
-        type: 'line',
-        stacked: true
+    scales: {
+        xAxis: {
+            display: false,
+        },
+        xAxis2: {
+            display: false,
+        },
+        yAxis: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            beginAtZero: false,
+        },
+        yAxis2: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            beginAtZero: false,
+            grid: {
+                display: false,
+            },
+        },
     },
-    dataLabels: {
-        enabled: false
-    },
-
 };
 
 function Details2(props) {
@@ -80,7 +83,7 @@ function Details2(props) {
         const dataMax = maxValue + 0.5;
      */
     const readings = props.data.readings;
-    const labels = readings.map(e => { return Math.floor(e.dt / 1000 / 60 / 60); });
+    const labels = readings.map(e => { return new Date(e.dt).getHours(); });
     const data = {
         labels,
         datasets: [
@@ -91,6 +94,7 @@ function Details2(props) {
                 borderWidth: 1,
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                yAxisID: 'yAxis',
             },
             {
                 label: 'Humidity',
@@ -99,6 +103,7 @@ function Details2(props) {
                 borderWidth: 1,
                 borderColor: 'rgb(99, 255, 132)',
                 backgroundColor: 'rgba(99, 255, 132, 0.5)',
+                yAxisID: 'yAxis2',
             },
         ],
     };
@@ -113,8 +118,8 @@ function Details2(props) {
                 <br />Last sensor data is {age(new Date(readings[readings.length - 1].dt))} old
             </p>
 
-            <div style={{ position: "relative", width: "375", height: "600" }}>
-                <Line data={data} />
+            <div style={{ position: "relative", height: "600" }}>
+                <Line data={data} options={options} />
             </div>
         </div>
     );
