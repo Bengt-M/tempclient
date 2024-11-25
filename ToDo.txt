@@ -1,7 +1,15 @@
 Graph for humidity?
+Selectable with a checkbox
+
 
 Maybe: asynch/await and not .then
 
 Move min/max from client to server
+Walk through props flow (data and time)
 
 Understand sizes and dynamic sizes
+full width on phone, more narrow on computer
+
+Remove unused code and old comments
+
+change the timestamp from server to json to client ?

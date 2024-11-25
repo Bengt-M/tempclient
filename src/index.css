@@ -54,12 +54,12 @@ td.tmpCur {
   min-height: 600px;
 }
 
-.inner {
+/* .inner {
   width: 400px;
   height: 400px;
   min-height: 400px;
 }
-
+ */
 .button {
   text-decoration: none;
   border: none;
