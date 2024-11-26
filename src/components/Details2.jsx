@@ -10,6 +10,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import 'chartjs-adapter-luxon';
 //import { faker } from '@faker-js/faker';
 
 ChartJS.register(
@@ -35,7 +36,7 @@ export const options = {
    // maintainAspectRatio: false,
     aspectRatio: 1,
     interaction: {
-        mode: 'index',
+        mode: 'nearest',
         intersect: true,
     },
     stacked: false,
@@ -46,9 +47,12 @@ export const options = {
         },
     },
     scales: {
-        xAxis: {
-            display: false,
-        },
+        x: [{
+            type: 'time',
+            time: {
+                tooltipFormat: 'DD T'
+            }
+        }],
         xAxis2: {
             display: false,
         },

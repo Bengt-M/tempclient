@@ -5,11 +5,17 @@ import Reading from './components/Reading';
 //import Details from './components/Details';
 import Details2 from './components/Details2';
 import useScreenSize from './components/useScreenSize';
-
+import Checkbox from './components/Checkbox;'
 
 function App() {
   const [data, setData] = useState();
   const screenSize = useScreenSize();
+
+  const [check, setCheck] = useState(false);
+
+  const handleChange = () => {
+    setCheck(!check);
+  }
 
   function clear() {
     console.log("click clear");
@@ -54,12 +60,13 @@ function App() {
         setData(data);
       });
   }, [time]);
-  console.log(screenSize.height," ",screenSize.width);
+  console.log(screenSize.height, " ", screenSize.width);
 
   return (
     <div className="App">
       <center>
         <Reading data={data} />
+        <Checkbox label="details" value={check} onChange={handleChange} />
         <Details2 data={data} time={time} />
         {/* <Details data={data} time={time} /> */}
         <button id="btn2" className="button" onClick={clear}>clear</button>
