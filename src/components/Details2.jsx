@@ -83,13 +83,13 @@ function Details2(props) {
             },
             yAxis: {
                 type: 'linear',
-                display: true,
+                display: checkTemp,
                 position: 'left',
                 beginAtZero: false,
             },
             yAxis2: {
                 type: 'linear',
-                display: true,
+                display: checkHum,
                 position: 'right',
                 beginAtZero: false,
                 grid: {
@@ -135,7 +135,7 @@ function Details2(props) {
             </p>
             <Checkbox label="temp" value={checkTemp} onChange={handleChangeTemp} />
             <Checkbox label="hum" value={checkHum} onChange={handleChangeHum} />
-            <div style={{ position: "relative", height: "600" }}>
+            <div style={{ position: "relative", height: "700" }}>
                 <Line data={data} options={options} />
             </div>
         </div>
