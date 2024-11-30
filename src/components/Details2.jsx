@@ -33,8 +33,6 @@ const age = (t) => {
     return h + "h " + m + "m ";
 }
 
-
-
 function Details2(props) {
     const [checkTemp, setCheckTemp] = useState(true);
     const [checkHum, setCheckHum] = useState(false);
@@ -46,16 +44,7 @@ function Details2(props) {
     const handleChangeHum = () => {
         setCheckHum(!checkHum);
     }
-    /*
-        let maxValue = -10000;
-        let minValue = 10000;
-         for (var i = 0, len = readings.length; i < len; i++) {
-            maxValue = Math.max(maxValue, readings[i].t);
-            minValue = Math.min(minValue, readings[i].t);
-        };
-        const dataMin = minValue - 0.5;
-        const dataMax = maxValue + 0.5;
-     */
+
     const options = {
         responsive: true,
         // maintainAspectRatio: false,
@@ -75,19 +64,20 @@ function Details2(props) {
             x: [{
                 type: 'time',
                 time: {
-                    tooltipFormat: 'DD T'
+                    unit: 'hour',
+                    tooltipFormat: 'DD H',
+                    displayFormats: {
+                        hour: 'DD H'
+                    }
                 }
             }],
-            xAxis2: {
-                display: false,
-            },
-            yAxis: {
+            y: {
                 type: 'linear',
                 display: checkTemp,
                 position: 'left',
                 beginAtZero: false,
             },
-            yAxis2: {
+            y2: {
                 type: 'linear',
                 display: checkHum,
                 position: 'right',
@@ -99,7 +89,7 @@ function Details2(props) {
         },
     };
     const readings = props.data.readings;
-    const labels = readings.map(e => { return new Date(e.dt).getHours(); });
+    const labels = readings.map(e => { const d = new Date(e.dt); return d.getHours() + ":" + d.getMinutes() });
     const data = {
         labels,
         datasets: [
@@ -110,7 +100,7 @@ function Details2(props) {
                 borderWidth: 1,
                 borderColor: 'rgb(255, 99, 132)',
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                yAxisID: 'yAxis',
+                yAxisID: 'y',
             },
             checkHum && {
                 label: 'Humidity',
@@ -119,7 +109,7 @@ function Details2(props) {
                 borderWidth: 1,
                 borderColor: 'rgb(99, 255, 132)',
                 backgroundColor: 'rgba(99, 255, 132, 0.5)',
-                yAxisID: 'yAxis2',
+                yAxisID: 'y2',
             },
         ],
     };

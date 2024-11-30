@@ -34,8 +34,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("useeffect");
-    // console.log(process.env.REACT_APP_BACKEND);
+    console.log("useeffect " + console.log(process.env.REACT_APP_BACKEND);
     fetch(process.env.REACT_APP_BACKEND)
       .then(response => response.json())
       .then(data => {
@@ -53,7 +52,7 @@ function App() {
         setData(data);
       });
   }, [time]);
-  console.log(screenSize.height, " ", screenSize.width);
+//  console.log(screenSize.height, " ", screenSize.width);
 
   return (
     <div className="App">
