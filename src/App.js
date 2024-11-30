@@ -4,11 +4,11 @@ import './App.css';
 import Reading from './components/Reading';
 //import Details from './components/Details';
 import Details2 from './components/Details2';
-import useScreenSize from './components/useScreenSize';
+//import useScreenSize from './components/useScreenSize';
 
 function App() {
   const [data, setData] = useState();
-  const screenSize = useScreenSize();
+  //const screenSize = useScreenSize();
 
   function clear() {
     console.log("click clear");
@@ -34,7 +34,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("useeffect " + console.log(process.env.REACT_APP_BACKEND);
+    console.log("useeffect " + console.log(process.env.REACT_APP_BACKEND));
     fetch(process.env.REACT_APP_BACKEND)
       .then(response => response.json())
       .then(data => {
