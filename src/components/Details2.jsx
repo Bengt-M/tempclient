@@ -43,9 +43,10 @@ function Details2(props) {
     if (props.data === undefined) return <div>no data</div>; else {
         if (props.data.readings === undefined) return <div>no data</div>; else {
             if (props.data.readings[0].dt === undefined) return <div>no data</div>; else {
-                const minValue = props.data.readings[0].dt;
-                const maxValue = props.data.readings[props.data.readings.length].dt;
 
+                const minValue = props.data.readings[0].dt;
+                const maxValue = props.data.readings[props.data.readings.length - 1].dt;
+                console.log(minValue, ":", maxValue);
                 const handleChangeTemp = () => {
                     setCheckTemp(!checkTemp);
                 }
@@ -71,16 +72,15 @@ function Details2(props) {
                     scales: {
                         x: {
                             type: 'time',
+                            min: minValue,
+                            max: maxValue,
+
                             time: {
-                                unit: 'hour',
-                                tooltipFormat: 'DD H',
+                                // unit: 'minute',
+                                tooltipFormat: 'DD T',
                                 displayFormats: {
-                                    hour: 'DD H'
+                                    hour: 'DD T'
                                 },
-                                ticks: {
-                                    min: minValue,
-                                    max: maxValue,
-                                }
                             }
                         },
                         y: {
@@ -101,7 +101,7 @@ function Details2(props) {
                     },
                 };
                 const readings = props.data.readings;
-                const labels = readings.map(e => { const d = new Date(e.dt); return d.getHours() + ":" + d.getMinutes() });
+                const labels = readings.map(e => { const d = new Date(e.dt); return d; });
                 const data = {
                     labels,
                     datasets: [
