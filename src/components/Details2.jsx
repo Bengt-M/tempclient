@@ -39,14 +39,13 @@ function Details2(props) {
     const [checkTemp, setCheckTemp] = useState(true);
     const [checkHum, setCheckHum] = useState(false);
 
-    console.log("props", props);
+//    console.log("props", props);
     if (props.data === undefined) return <div>no data</div>; else {
         if (props.data.readings === undefined) return <div>no data</div>; else {
             if (props.data.readings[0].dt === undefined) return <div>no data</div>; else {
-
                 const minValue = props.data.readings[0].dt;
                 const maxValue = props.data.readings[props.data.readings.length - 1].dt;
-                console.log(minValue, ":", maxValue);
+//                console.log(minValue, ":", maxValue);
                 const handleChangeTemp = () => {
                     setCheckTemp(!checkTemp);
                 }
@@ -74,9 +73,8 @@ function Details2(props) {
                             type: 'time',
                             min: minValue,
                             max: maxValue,
-
                             time: {
-                                // unit: 'minute',
+//                                unit: 'minute',
                                 tooltipFormat: 'DD T',
                                 displayFormats: {
                                     hour: 'DD T'
@@ -101,7 +99,7 @@ function Details2(props) {
                     },
                 };
                 const readings = props.data.readings;
-                const labels = readings.map(e => { const d = new Date(e.dt); return d; });
+                const labels = readings.map(e => { return new Date(e.dt); });
                 const data = {
                     labels,
                     datasets: [
@@ -137,7 +135,7 @@ function Details2(props) {
                         </p>
                         <Checkbox label="temp" value={checkTemp} onChange={handleChangeTemp} />
                         <Checkbox label="hum" value={checkHum} onChange={handleChangeHum} />
-                        <div style={{ position: "relative", height: "700" }}>
+                        <div style={{ position: "relative" }}>
                             <Line data={data} options={options} />
                         </div>
                     </div>

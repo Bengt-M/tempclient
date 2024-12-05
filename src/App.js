@@ -11,7 +11,7 @@ function App() {
   //const screenSize = useScreenSize();
 
   function clear() {
-    console.log("click clear");
+//    console.log("click clear");
     if (window.confirm("Really clear ALL data?")) {
       const requestOptions = {
         method: 'POST',
@@ -34,7 +34,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("useeffect " + console.log(process.env.REACT_APP_BACKEND));
+//    console.log("useeffect " + process.env.REACT_APP_BACKEND);
     fetch(process.env.REACT_APP_BACKEND)
       .then(response => response.json())
       .then(data => {
